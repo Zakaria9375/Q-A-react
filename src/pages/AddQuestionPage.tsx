@@ -1,5 +1,7 @@
 import axios from "axios";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { baseUrl } from "../types/types";
+import { useNavigate } from "react-router-dom";
 
 type Inputs = {
 	title: string;
@@ -7,15 +9,15 @@ type Inputs = {
 };
 
 function AddQuestion() {
+	const navigate = useNavigate();
 	const {
 		register,
 		handleSubmit,
 		formState: { errors },
 	} = useForm<Inputs>();
 	const onSubmit: SubmitHandler<Inputs> = async (data) => {
-		const url = "http://localhost:8050/api/questions";
-		const sendData = await axios.post(url, { ...data });
-		console.log("New Q:", sendData);
+		const response = await axios.post(`${baseUrl}/questions`, { ...data });
+		navigate(`/question/${response.data.id}`);
 	};
 	return (
 		<>

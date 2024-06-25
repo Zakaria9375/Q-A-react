@@ -18,7 +18,11 @@ function SearchPage() {
 				value={searchTerm}
 				onChange={handleSearchChange}
 			/>
-			<QuestionList url={searchUrl} />
+			{searchTerm ? (
+				<QuestionList url={searchUrl} />
+			) : (
+				<p className="opacity-70 text-2xl p-4">Search for something . . .</p>
+			)}
 		</>
 	);
 }

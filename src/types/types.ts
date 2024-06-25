@@ -17,3 +17,5 @@ export interface Answer {
 export interface Err {
 	message: string;
 }
+
+export const baseUrl = "http://localhost:8050/api";

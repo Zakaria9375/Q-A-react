@@ -1,14 +1,26 @@
+import axios from "axios";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { baseUrl } from "../../types/types";
 
 type fields = { answer: string };
-
-function AddAnswer() {
+interface AddAnswerProps {
+	questionId: number;
+	emitData: VoidFunction;
+}
+function AddAnswer(props: AddAnswerProps) {
 	const {
 		register,
 		handleSubmit,
 		formState: { errors },
 	} = useForm<fields>();
-	const onSubmit: SubmitHandler<fields> = (data) => console.log(data);
+	const onSubmit: SubmitHandler<fields> = async (data) => {
+		const theSendingData = {
+			content: data.answer,
+			question: `${baseUrl}/questions/${props.questionId}`,
+		};
+		const response = await axios.post(`${baseUrl}/answers`, theSendingData);
+		props.emitData();
+	};
 	return (
 		<>
 			<form onSubmit={handleSubmit(onSubmit)}>

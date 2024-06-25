@@ -5,6 +5,7 @@ interface FetchState<T> {
 	data: T | null;
 	isLoading: boolean;
 	error: string | null;
+	fetchData: () => void;
 }
 
 function useFetchData<T>(url: string | null): FetchState<T> {
@@ -12,25 +13,25 @@ function useFetchData<T>(url: string | null): FetchState<T> {
 	const [isLoading, setIsLoading] = useState<boolean>(false);
 	const [error, setError] = useState<string | null>(null);
 
-	useEffect(() => {
+	const fetchData = async () => {
 		if (!url) return;
 
-		async function fetchData() {
-			try {
-				setIsLoading(true);
-				const response = await axios.get(url);
-				setData(response.data._embedded);
-			} catch (error: any) {
-				setError(error.message || "Could not fetch data");
-			} finally {
-				setIsLoading(false);
-			}
+		try {
+			setIsLoading(true);
+			const response = await axios.get(url);
+			setData(response.data);
+		} catch (error: any) {
+			setError(error.message || "Could not fetch data");
+		} finally {
+			setIsLoading(false);
 		}
+	};
 
+	useEffect(() => {
 		fetchData();
 	}, [url]);
 
-	return { data, isLoading, error };
+	return { data, isLoading, error, fetchData };
 }
 
 export default useFetchData;
