@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer base {
+	*:focus {
+		@apply outline outline-offset-4 outline-violet-500;
+	}
+
+	body {
+		@apply text-base md:text-lg lg:text-xl bg-[#FAFAFA] text-[#212121];
+	}
+
+	label {
+		@apply block p-0.5 md:p-1;
+	}
+
+
+	input,
+	textarea {
+		@apply border border-slate-300 rounded-lg p-4 w-full my-2;
+	}
+
+	textarea {
+		@apply min-h-[150px] lg:min-h-[200px] resize-y;
+	}
+}
+
+@layer components {
+	.active {
+		@apply text-sky-700 font-medium;
+	}
+
+	.end-flex {
+		@apply flex justify-end;
+	}
+
+	.btn {
+		@apply px-8 py-3 bg-sky-800 hover:bg-sky-600 text-white rounded-lg;
+	}
+
+	.heading-1 {
+		@apply text-xl md:text-2xl lg:text-3xl;
+	}
+
+	.error {
+		@apply text-red-500 font-medium px-1;
+	}
+
+	.loader-spinner {
+		@apply size-12 md:size-16 border-[5px] border-cyan-700 rounded-full border-b-transparent inline-block animate-spin
+	}
+}
