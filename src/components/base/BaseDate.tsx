@@ -13,7 +13,7 @@ function BaseDate(props: DateProps) {
 
 	return (
 		<>
-			<span>{date}</span>
+			<span className="text-gray-400 m-2 leading-none">{date}</span>
 		</>
 	);
 }

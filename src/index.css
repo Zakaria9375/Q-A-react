@@ -40,6 +40,10 @@
 		@apply px-8 py-3 bg-sky-800 hover:bg-sky-600 text-white rounded-lg;
 	}
 
+	.log-btn {
+		@apply px-4 py-2 bg-sky-800 hover:bg-sky-600 text-white;
+	}
+
 	.heading-1 {
 		@apply text-xl md:text-2xl lg:text-3xl;
 	}
@@ -50,5 +54,9 @@
 
 	.loader-spinner {
 		@apply size-12 md:size-16 border-[5px] border-cyan-700 rounded-full border-b-transparent inline-block animate-spin
+	}
+
+	.sm-btn {
+		@apply p-1.5 m-0.5 rounded-md bg-gray-200 hover:bg-sky-600 hover:text-white;
 	}
 }
