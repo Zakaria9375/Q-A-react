@@ -18,7 +18,7 @@ function AddAnswer(props: AddAnswerProps) {
 			content: data.answer,
 			question: `${baseUrl}/questions/${props.questionId}`,
 		};
-		const response = await axios.post(`${baseUrl}/answers`, theSendingData);
+		await axios.post(`${baseUrl}/answers`, theSendingData);
 		props.emitData();
 	};
 	return (

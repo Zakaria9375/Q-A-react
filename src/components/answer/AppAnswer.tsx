@@ -1,4 +1,3 @@
-import axios from "axios";
 import { Answer } from "../../types/types";
 import BaseDate from "../base/BaseDate";
 
@@ -7,15 +6,7 @@ interface AnswerProps {
 }
 
 function AppAnswer(props: AnswerProps) {
-	async function editAnswer() {
-		const theUpdatedDate: Answer = {
-			id: props.answer.id,
-			content: "",
-			createdAt: props.answer.createdAt,
-			questionId: props.answer.questionId,
-		};
-		await axios.put();
-	}
+	async function editAnswer() {}
 	async function deleteAnswer() {}
 	return (
 		<>
