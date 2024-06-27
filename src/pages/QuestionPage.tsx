@@ -16,10 +16,7 @@ function QuestionPage() {
 				{data && params.id ? (
 					<div className="space-y-4">
 						<AppQuestion question={data} />
-						<AnswersList
-							questionId={data.id}
-							answers={data._embedded.answers}
-						/>
+						<AnswersList questionId={data.id} />
 					</div>
 				) : (
 					<p>No question was found</p>
