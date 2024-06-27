@@ -4,18 +4,22 @@
 
 
 @layer base {
+
 	*:focus {
-		@apply outline outline-offset-4 outline-violet-500;
+		@apply outline outline-1 outline-offset-4 outline-gray-600;
 	}
 
 	body {
-		@apply text-base md:text-lg lg:text-xl bg-[#FAFAFA] text-[#212121];
+		@apply relative text-base md:text-lg lg:text-xl bg-[#FAFAFA] text-[#212121];
 	}
 
 	label {
 		@apply block p-0.5 md:p-1;
 	}
 
+	button:disabled {
+		@apply cursor-not-allowed opacity-40;
+	}
 
 	input,
 	textarea {
@@ -23,13 +27,17 @@
 	}
 
 	textarea {
-		@apply min-h-[150px] lg:min-h-[200px] resize-y;
+		@apply min-h-[150px] lg:min-h-[180px] resize-y;
 	}
 }
 
 @layer components {
 	.active {
 		@apply text-sky-700 font-medium;
+	}
+
+	.heading-top {
+		@apply text-center text-2xl md:text-3xl lg:text-4xl max-w-[700px] mx-auto my-8
 	}
 
 	.end-flex {
@@ -56,7 +64,85 @@
 		@apply size-12 md:size-16 border-[5px] border-cyan-700 rounded-full border-b-transparent inline-block animate-spin
 	}
 
+	.name-spin {
+		@apply mx-8 w-[7.5px] aspect-square rounded-full clip-path-inset-negative shadow-custom-loader translate-y-[-7.5px] animate-l19;
+	}
+
 	.sm-btn {
 		@apply p-1.5 m-0.5 rounded-md bg-gray-200 hover:bg-sky-600 hover:text-white;
 	}
+
+	.mdl-btn {
+		@apply py-1.5 px-5 rounded-lg capitalize;
+	}
+
+	.gh-btn {
+		@apply hover:text-white hover:bg-gray-500;
+	}
+
+	.active-page {
+		@apply text-sky-700 font-bold shadow-ninja px-1.5 py-0.5 rounded-lg;
+	}
+}
+
+@layer utilities {
+	.clip-path-inset-negative {
+		clip-path: inset(-22.5px);
+	}
+
+	.shadow-custom-loader {
+		box-shadow: 30px 7.5px, -30px 7.5px, -30px 7.5px;
+	}
+
+	@keyframes l19 {
+		16.67% {
+			box-shadow: -30px 7.5px, -30px 7.5px, 9.5px 7.5px;
+		}
+
+		33.33% {
+			box-shadow: -30px 7.5px, 0px 7.5px, 9.5px 7.5px;
+		}
+
+		40%,
+		60% {
+			box-shadow: -9.5px 7.5px, 0px 7.5px, 9.5px 7.5px;
+		}
+
+		66.67% {
+			box-shadow: -9.5px 7.5px, 0px 7.5px, 30px 7.5px;
+		}
+
+		83.33% {
+			box-shadow: -9.5px 7.5px, 30px 7.5px, 30px 7.5px;
+		}
+
+		100% {
+			box-shadow: 30px 7.5px, 30px 7.5px, 30px 7.5px;
+		}
+	}
+
+	.animate-l19 {
+		animation: l19 1.8s infinite linear;
+	}
+}
+
+.question-item .override-bg {
+	background: rgb(226 232 240);
+	border: 1px solid rgb(8 145 178);
+	border-bottom: none;
+}
+
+.question-card .override-bg {
+	box-shadow: none;
+	background: rgb(226 232 240);
+	margin: 0;
+	padding: 4px 12px;
+}
+
+.question-card:hover .override-bg {
+	background-color: rgb(203 213 225);
+}
+
+.invalid-input {
+	border: 1px solid #be3030
 }

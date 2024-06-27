@@ -1,9 +1,9 @@
 import { useParams } from "react-router-dom";
 import { baseUrl, Question } from "../types/types";
-import BaseDate from "../components/base/BaseDate";
 import AnswersList from "../components/answer/AnswersList";
 import DataLoader from "../components/base/DataLoader";
-import useFetchData from "../components/hooks/useFetchData";
+import useFetchData from "../hooks/useFetchData";
+import AppQuestion from "../components/question/AppQuestion";
 
 function QuestionPage() {
 	const params = useParams();
@@ -15,15 +15,11 @@ function QuestionPage() {
 			<DataLoader isLoading={isLoading} error={error}>
 				{data && params.id ? (
 					<div className="space-y-4">
-						<section className="border border-cyan-600 bg-slate-200 rounded-xl p-3">
-							<h1 className="heading-1">{data.title}</h1>
-							<h2 className="mt-2">{data.description}</h2>
-							<div className="end-flex">
-								<BaseDate theDate={data.createdAt} />
-							</div>
-						</section>
-
-						<AnswersList questionId={data.id} />
+						<AppQuestion question={data} />
+						<AnswersList
+							questionId={data.id}
+							answers={data._embedded.answers}
+						/>
 					</div>
 				) : (
 					<p>No question was found</p>

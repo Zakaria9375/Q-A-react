@@ -1,45 +1,38 @@
 import axios from "axios";
-import { SubmitHandler, useForm } from "react-hook-form";
 import { baseUrl } from "../../types/types";
+import AnswerEditor from "./AnswerEditor";
+import { useSelector } from "react-redux";
+import { RootState } from "../../stores/reducers";
 
-type fields = { answer: string };
+type Fields = { answer: string };
 interface AddAnswerProps {
 	questionId: number;
-	emitData: VoidFunction;
+	emitRefetch: () => void;
 }
-function AddAnswer(props: AddAnswerProps) {
-	const {
-		register,
-		handleSubmit,
-		formState: { errors },
-	} = useForm<fields>();
-	const onSubmit: SubmitHandler<fields> = async (data) => {
-		const theSendingData = {
-			content: data.answer,
-			question: `${baseUrl}/questions/${props.questionId}`,
-		};
-		await axios.post(`${baseUrl}/answers`, theSendingData);
-		props.emitData();
+
+function AddAnswer({ questionId, emitRefetch }: AddAnswerProps) {
+	const { isAuthenticated, user } = useSelector(
+		(state: RootState) => state.auth
+	);
+	const onDataReceive = async (data: Fields) => {
+		try {
+			const theSendingData = {
+				content: data.answer,
+				user: isAuthenticated
+					? `${baseUrl}/users/search/findByEmail?email=${user?.email}`
+					: null,
+				question: `${baseUrl}/questions/${questionId}`,
+			};
+			await axios.post(`${baseUrl}/answers`, theSendingData);
+			emitRefetch();
+		} catch (error) {
+			console.error("❌Error adding answer ➕: ", error);
+		}
 	};
+
 	return (
 		<>
-			<form onSubmit={handleSubmit(onSubmit)}>
-				<textarea
-					placeholder="Add a new answer"
-					aria-label="Answer"
-					{...register("answer", { required: true })}
-				></textarea>
-				{errors.answer && (
-					<p className="error" id="answer-error">
-						This field is required
-					</p>
-				)}
-				<div className="end-flex">
-					<button type="submit" className="btn">
-						Add Answer
-					</button>
-				</div>
-			</form>
+			<AnswerEditor btnName="Add Answer" emitAnswer={onDataReceive} />
 		</>
 	);
 }

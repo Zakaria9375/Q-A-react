@@ -1,16 +1,27 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { NavLink } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
+import { useSelector } from "react-redux";
+import { RootState } from "../../stores/store";
+
 function AppHeader() {
-	const { user, isAuthenticated, loginWithRedirect, logout } = useAuth0();
+	useAuth();
+	const { loginWithRedirect, logout } = useAuth0();
 	const logoutWithRedirect = () =>
 		logout({
 			logoutParams: {
 				returnTo: window.location.origin,
 			},
 		});
+	const { isAuthenticated, user } = useSelector(
+		(state: RootState) => state.auth
+	);
 	return (
-		<div className="flex justify-between ">
-			<nav className="flex gap-4 justify-center items-center text-lg">
+		<header className="flex justify-between ">
+			<nav
+				className="flex gap-4 justify-center items-center text-lg"
+				aria-label="Pages navigation"
+			>
 				<NavLink
 					to="/"
 					className={({ isActive }) => (isActive ? "active" : "")}
@@ -23,17 +34,12 @@ function AppHeader() {
 				{isAuthenticated ? (
 					<div className="flex gap-3 items-center">
 						<div className="flex gap-2 items-center">
-							{user?.picture ? (
-								<img
-									src={user?.picture}
-									alt="Profile photo"
-									className="size-10"
-								/>
-							) : (
-								<i className="fa-solid fa-user text-[25px]"></i>
-							)}
-
-							<span className="capitalize">{user?.name || "user"}</span>
+							<img
+								src={user?.photo || "/public/user.png"}
+								alt="Profile photo"
+								className="size-10"
+							/>
+							<span className="capitalize">{user?.name || "Welcome"}</span>
 						</div>
 						<button onClick={() => logoutWithRedirect()} className="log-btn">
 							Log out
@@ -45,7 +51,7 @@ function AppHeader() {
 					</button>
 				)}
 			</div>
-		</div>
+		</header>
 	);
 }
 export default AppHeader;

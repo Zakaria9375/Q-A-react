@@ -1,14 +1,22 @@
 import { useState } from "react";
 import QuestionList from "../components/question/QuestionList";
+import { baseUrl } from "../types/types";
 
 function SearchPage() {
+	const validSearchRegex = /^[a-zA-Z\s]*$/;
 	const [searchTerm, setSearchTerm] = useState<string>("");
-	const baseUrl = "http://localhost:8050/api";
-	const searchUrl = searchTerm
-		? `${baseUrl}/questions/search/findByTitleContaining?title=${searchTerm}`
-		: "";
+	const [isValid, setIsValid] = useState<boolean>(true);
+
+	const searchUrl = `${baseUrl}/questions/search/findByTitleContaining`;
+
 	const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-		setSearchTerm(event.target.value);
+		const value = event.target.value;
+		if (validSearchRegex.test(value) || value === "") {
+			setSearchTerm(value);
+			setIsValid(true);
+		} else {
+			setIsValid(false);
+		}
 	};
 	return (
 		<>
@@ -17,11 +25,19 @@ function SearchPage() {
 				placeholder="Search for question"
 				value={searchTerm}
 				onChange={handleSearchChange}
+				aria-label="Search for a question"
+				className={isValid ? "" : "invalid-input"}
 			/>
+			{!isValid && <p className="error">Please type valid characters</p>}
 			{searchTerm ? (
-				<QuestionList url={searchUrl} />
+				<>
+					<h1 className="heading-top">Results</h1>
+					<div aria-live="polite">
+						<QuestionList url={searchUrl} searchTerm={searchTerm} />
+					</div>
+				</>
 			) : (
-				<p className="opacity-70 text-2xl p-4">Search for something . . .</p>
+				<h1 className="opacity-70 text-2xl p-4">Search for something . . .</h1>
 			)}
 		</>
 	);

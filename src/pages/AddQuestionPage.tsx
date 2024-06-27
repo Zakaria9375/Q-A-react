@@ -22,12 +22,19 @@ function AddQuestion() {
 	return (
 		<>
 			<h1 className="text-center heading-1">Ask your Question</h1>
-			<form onSubmit={handleSubmit(onSubmit)} className="space-y-4 mt-6">
+			<form
+				onSubmit={handleSubmit(onSubmit)}
+				className="space-y-4 mt-6"
+				aria-label="Add New Question"
+			>
 				<div>
 					<label htmlFor="title">Title:</label>
 					<input
 						placeholder="What is the capital of Latvia?"
 						{...register("title", { required: true })}
+						id="title"
+						aria-describedby={errors.title ? "title-error" : ""}
+						className={errors.title ? "invalid-input" : ""}
 					/>
 					{errors.title && (
 						<p className="error" id="title-error">
@@ -40,6 +47,7 @@ function AddQuestion() {
 					<textarea
 						placeholder="Write a detailed description.."
 						{...register("description")}
+						id="description"
 					></textarea>
 				</div>
 				<div className="end-flex">

@@ -1,6 +1,10 @@
 function AppSpinner() {
 	return (
-		<div className="flex items-center justify-center min-h-[300px] w-full">
+		<div
+			role="status"
+			aria-live="polite"
+			className="flex items-center justify-center min-h-[300px] w-full"
+		>
 			<span className="loader-spinner"></span>
 		</div>
 	);
