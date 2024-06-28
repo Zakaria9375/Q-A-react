@@ -61,6 +61,7 @@ npm run test
 
 <details>
   <summary><b>Some of Accessibility Tests Screenshots</b></summary>
+
 <p align="center">
 <img src="./public/access1.PNG" alt="Accessibility test 1" width="">
 </p>
@@ -72,6 +73,7 @@ npm run test
 
 <details>
   <summary><b>Lighthouse Report</b></summary>
+
 <p align="center">
 <img src="./public/lighthouse.PNG" alt="Lighthouse tests" width="450">
 </p>
@@ -79,6 +81,7 @@ npm run test
 
 <details>
   <summary><b>Unit Tests Screenshots</b></summary>
+
 <p align="center">
 <img src="./public/tests.PNG" alt="Unit tests" width="600">
 </p>
@@ -92,7 +95,14 @@ I am proud of accessibility, styling, clean markup, innovative problem-solving, 
 
 > What could be improved ?
 
-Your feedback maybe useful at this section.
+1. The score, that is calculated by light-house report.
+2. The focus on `NavLink`, that does not appear by keyboard navigation.
+3. Unit testing.
+4. Proper of full integration of Auth0 into the app.
+
+<p align="center">
+<img src="./public/retro.PNG" alt="lighthouse downsides" width="500">
+</p>
 
 ## About the Author
 

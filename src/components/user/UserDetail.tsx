@@ -15,11 +15,11 @@ function UserDetail(props: UserDetailProps) {
 			<DataLoader isLoading={isLoading} error={error} nameSpinner={true}>
 				<div className=" flex gap-4 w-fit py-1.5 px-5 mx-6 bg-white rounded-t-md shadow-ninja override-bg">
 					<img
-						src={data?.photo || "/public/user.png"}
+						src={data?.photo ? data.photo : "/public/user.png"}
 						alt={`${data?.name} User Profile`}
 						className="rounded-full size-7"
 					/>
-					<h2 className="text-lg">{data?.name || "Guest"}</h2>
+					<h2 className="text-lg">{data?.name ? data.name : "Guest"}</h2>
 				</div>
 			</DataLoader>
 		</>
