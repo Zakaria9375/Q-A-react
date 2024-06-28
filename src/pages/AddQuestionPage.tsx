@@ -24,7 +24,7 @@ function AddQuestion() {
 		const newQuestion = {
 			title: data.title,
 			description: data.description,
-			userId: `${baseUrl}/users/${user?.id}`,
+			user: `${baseUrl}/users/${user?.id}`,
 		};
 		if (isAuthenticated) {
 			const response = await axios.post(`${baseUrl}/questions`, {
