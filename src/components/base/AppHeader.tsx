@@ -17,7 +17,7 @@ function AppHeader() {
 		(state: RootState) => state.auth
 	);
 	return (
-		<header className="flex justify-between items-center flex-col md:flex-row">
+		<header className="flex justify-between items-center gap-4 flex-col md:flex-row">
 			<nav
 				className="flex gap-4 justify-center items-center text-lg"
 				aria-label="Pages navigation"
