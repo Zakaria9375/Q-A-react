@@ -29,5 +29,4 @@ export interface Err {
 	message: string;
 }
 
-export const baseUrl =
-	"https://inevitable-odelle-zaportfolio-3128ae44.koyeb.app/api";
+export const baseUrl = import.meta.env.VITE_AUTH0_AUDIENCE;
