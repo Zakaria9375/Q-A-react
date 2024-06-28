@@ -12,29 +12,25 @@ const useAuth = () => {
 	useEffect(() => {
 		const authenticate = async () => {
 			if (isAuthenticated && user0) {
+				const token = await getAccessTokenSilently();
+				let user: DBUser;
 				try {
-					const token = await getAccessTokenSilently();
 					const response = await axios.get(
 						`${baseUrl}/users/search/findByEmail?email=${user0.email}`
 					);
-					let user: DBUser;
-					if (response.data.length > 0) {
-						user = response.data[0];
-					} else {
-						const newUser = {
-							name: user0.name,
-							email: user0.email,
-							photo: user0.picture || null,
-						};
-						const userPostUrl = `${baseUrl}/users`;
-						const createUserResponse = await axios.post(userPostUrl, newUser);
-						user = createUserResponse.data;
-					}
-					dispatch(login({ user, token }));
+					user = response.data;
 				} catch (error) {
-					console.error("Error during authentication:", error);
-					dispatch(logout());
+					console.error("Error during Finding user In DB:", error);
+					const newUser = {
+						name: user0.name,
+						email: user0.email,
+						photo: user0.picture || null,
+					};
+					const userPostUrl = `${baseUrl}/users`;
+					const createUserResponse = await axios.post(userPostUrl, newUser);
+					user = createUserResponse.data;
 				}
+				dispatch(login({ user, token }));
 			} else {
 				dispatch(logout());
 			}

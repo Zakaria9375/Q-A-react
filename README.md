@@ -1,6 +1,6 @@
 # Question & Answers - React
 
-This is a Questions & Answers web full-stack application where users can create questions add, edit or delete their answers
+This is a Questions & Answers web full-stack application where users can create questions add, edit or delete their answers.
 
 ## Overview
 
@@ -42,20 +42,10 @@ npm run dev
 - [Backend Repository](https://github.com/Zakaria9375/QA-springboot-backend)
 - [Live Demo](https://za-qa.netlify.app/)
 
-## Testing
-
-### Accessibility
+## Accessibility
 
 This app has been crafted with a focus on accessibility, utilizing the Accessibility Linter, IBM Equal Access Accessibility Checker extension, and WCAG extension to adhere to accessibility best practices. Key features include: Zooming,
 Keyboard-only navigation, Static code analysis, Aria rules compliance, and Semantic HTML.
-
-### Unit Testing
-
-To run and execute all the unit tests defined in the project after setting the app in development mode, open a new terminal and write the following:
-
-```shell
-npm run test
-```
 
 ## Screenshots
 
@@ -76,14 +66,6 @@ npm run test
 
 <p align="center">
 <img src="./public/lighthouse.PNG" alt="Lighthouse tests" width="450">
-</p>
-</details>
-
-<details>
-  <summary><b>Unit Tests Screenshots</b></summary>
-
-<p align="center">
-<img src="./public/tests.PNG" alt="Unit tests" width="600">
 </p>
 </details>
 
