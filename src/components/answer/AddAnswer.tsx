@@ -18,9 +18,7 @@ function AddAnswer({ questionId, emitRefetch }: AddAnswerProps) {
 		try {
 			const theSendingData = {
 				content: data.answer,
-				user: isAuthenticated
-					? `${baseUrl}/users/search/findByEmail?email=${user?.email}`
-					: null,
+				user: isAuthenticated ? `${baseUrl}/users/${user?.id}` : null,
 				question: `${baseUrl}/questions/${questionId}`,
 			};
 			await axios.post(`${baseUrl}/answers`, theSendingData);

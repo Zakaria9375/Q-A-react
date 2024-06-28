@@ -16,9 +16,15 @@ const useAuth = () => {
 				let user: DBUser;
 				try {
 					const response = await axios.get(
-						`${baseUrl}/users/search/findByEmail?email=${user0.email}`
+						`${baseUrl}/users/search/findAllByEmail?email=${user0.email}`
 					);
-					user = response.data;
+					const userDB = response.data._embedded.users[0];
+					user = {
+						id: userDB.id,
+						name: userDB.name,
+						email: userDB.email,
+						photo: userDB.photo,
+					};
 				} catch (error) {
 					console.error("Error during Finding user In DB:", error);
 					const newUser = {
@@ -27,8 +33,11 @@ const useAuth = () => {
 						photo: user0.picture || null,
 					};
 					const userPostUrl = `${baseUrl}/users`;
-					const createUserResponse = await axios.post(userPostUrl, newUser);
-					user = createUserResponse.data;
+					await axios.post(userPostUrl, newUser);
+					const response = await axios.get(
+						`${baseUrl}/users/search/findAllByEmail?email=${user0.email}`
+					);
+					user = response.data._embedded.users[0];
 				}
 				dispatch(login({ user, token }));
 			} else {

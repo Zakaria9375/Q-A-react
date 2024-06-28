@@ -2,6 +2,8 @@ import axios from "axios";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { baseUrl } from "../types/types";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { RootState } from "../stores/reducers";
 
 type Inputs = {
 	title: string;
@@ -10,14 +12,26 @@ type Inputs = {
 
 function AddQuestion() {
 	const navigate = useNavigate();
+	const { isAuthenticated, user } = useSelector(
+		(state: RootState) => state.auth
+	);
 	const {
 		register,
 		handleSubmit,
 		formState: { errors },
 	} = useForm<Inputs>();
 	const onSubmit: SubmitHandler<Inputs> = async (data) => {
-		const response = await axios.post(`${baseUrl}/questions`, { ...data });
-		navigate(`/question/${response.data.id}`);
+		const newQuestion = {
+			title: data.title,
+			description: data.description,
+			userId: `${baseUrl}/users/${user?.id}`,
+		};
+		if (isAuthenticated) {
+			const response = await axios.post(`${baseUrl}/questions`, {
+				...newQuestion,
+			});
+			navigate(`/question/${response.data.id}`);
+		}
 	};
 	return (
 		<>

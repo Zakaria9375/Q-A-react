@@ -27,6 +27,9 @@ function AppAnswer({ answer, emitRefetch }: AnswerProps) {
 		editModal.closeModal();
 		emitRefetch();
 	}
+	function isUserAnswer() {
+		return isAuthenticated && user?.id === answer.userId;
+	}
 	return (
 		<>
 			<li>
@@ -34,7 +37,7 @@ function AppAnswer({ answer, emitRefetch }: AnswerProps) {
 				<div className="bg-white p-4 shadow-ninja rounded-lg">
 					<div className="flex justify-between">
 						<BaseDate theDate={answer.createdAt} />
-						{isAuthenticated && user && (
+						{isUserAnswer() && (
 							<div className="flex gap-2">
 								<button
 									className="sm-btn"
