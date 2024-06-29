@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import QuestionList from "../components/question/QuestionList";
 import { baseUrl } from "../types/types";
-import Modal from "../components/base/Modal";
 
 function HomePage() {
 	const questionsUrl = `${baseUrl}/questions`;
