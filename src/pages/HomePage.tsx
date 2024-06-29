@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import QuestionList from "../components/question/QuestionList";
 import { baseUrl } from "../types/types";
+import Modal from "../components/base/Modal";
 
 function HomePage() {
 	const questionsUrl = `${baseUrl}/questions`;
@@ -15,6 +16,10 @@ function HomePage() {
 				</Link>
 			</div>
 			<QuestionList url={questionsUrl} />
+			<Modal show={true} onClose={() => console.log("close")}>
+				<h2>Hello</h2>
+				<h3>hi</h3>
+			</Modal>
 		</>
 	);
 }
