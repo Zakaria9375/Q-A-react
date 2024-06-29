@@ -10,9 +10,8 @@ const Modal: React.FC<ModalProps> = ({ show, onClose, children }) => {
 	}
 
 	return (
-		<div
+		<dialog
 			className="absolute flex justify-center items-center right-0 left-0 top-0 bottom-0 z-10"
-			role="dialog"
 			aria-modal="true"
 			aria-live="polite"
 		>
