@@ -11,7 +11,7 @@ const Modal: React.FC<ModalProps> = ({ show, onClose, children }) => {
 
 	return (
 		<dialog
-			className="absolute flex justify-center items-center right-0 left-0 top-0 bottom-0 z-10"
+			className="absolute right-0 left-0 top-0 bottom-0 z-10"
 			aria-modal="true"
 			aria-live="polite"
 		>
@@ -20,7 +20,8 @@ const Modal: React.FC<ModalProps> = ({ show, onClose, children }) => {
 				onClick={onClose}
 				aria-hidden="true"
 			></div>
-			<div className="w-full max-w-[500px] relative z-20 bg-white rounded-lg p-4">
+			<div className="w-full max-w-[500px] relative z-20 bg-white rounded-lg p-4 mx-auto h-dvh flex items-center justify-center flex-col">
+				
 				<div className="end-flex mb-2">
 					<button
 						className="sm-btn p-1 size-8 m-0"
