@@ -2,10 +2,8 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "../../stores/store";
-import useAppAuth from "../../hooks/useAppAuth";
 
 function AppHeader() {
-	useAppAuth();
 	const { loginWithRedirect, logout, isLoading } = useAuth0();
 	const logoutWithRedirect = () =>
 		logout({

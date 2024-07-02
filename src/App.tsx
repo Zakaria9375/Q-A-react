@@ -7,6 +7,7 @@ import Layout from "./Layout.tsx";
 import AddQuestion from "./pages/AddQuestionPage.tsx";
 import ProtectedRoute from "./pages/ProtectedRoute.tsx";
 import LoginPage from "./pages/LoginPage.tsx";
+import AppCallback from "./pages/AppCallback.tsx";
 
 const router = createBrowserRouter([
 	{
@@ -39,6 +40,11 @@ const router = createBrowserRouter([
 				element: <QuestionPage />,
 			},
 		],
+	},
+	{
+		path: "/callback",
+		element: <AppCallback />,
+		errorElement: <NotFoundPage />,
 	},
 ]);
 

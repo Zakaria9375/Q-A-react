@@ -4,10 +4,12 @@ import axios from "axios";
 import { baseUrl, DBUser } from "../types/types";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const useAppAuth = () => {
 	const { user: authUser, isAuthenticated } = useAuth0();
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 	useEffect(() => {
 		const authenticate = async () => {
 			if (isAuthenticated && authUser) {
@@ -28,8 +30,10 @@ const useAppAuth = () => {
 					user = response.data;
 				}
 				dispatch(login({ user }));
+				navigate("/");
 			} else {
 				dispatch(logout());
+				navigate("/");
 			}
 		};
 		authenticate();
