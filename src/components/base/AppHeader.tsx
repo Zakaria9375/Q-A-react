@@ -10,7 +10,7 @@ function AppHeader() {
 	const logoutWithRedirect = () =>
 		logout({
 			logoutParams: {
-				returnTo: `${window.location.origin}/redirect`,
+				returnTo: `${window.location.origin}`,
 			},
 		});
 	const { isAuthenticated, user } = useSelector(
@@ -53,7 +53,7 @@ function AppHeader() {
 							onClick={() =>
 								loginWithRedirect({
 									authorizationParams: {
-										redirect_uri: `${window.location.origin}/redirect`,
+										redirect_uri: `${window.location.origin}`,
 									},
 								})
 							}
