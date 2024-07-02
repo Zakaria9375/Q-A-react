@@ -42,7 +42,7 @@ const router = createBrowserRouter([
 		],
 	},
 	{
-		path: "/callback",
+		path: "/redirect",
 		element: <AppCallback />,
 		errorElement: <NotFoundPage />,
 	},
