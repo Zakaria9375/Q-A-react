@@ -35,6 +35,7 @@ const useAppAuth = () => {
 				navigate("/");
 			} else {
 				dispatch(logout());
+				navigate("/");
 			}
 			setIsLoading(false);
 		};
