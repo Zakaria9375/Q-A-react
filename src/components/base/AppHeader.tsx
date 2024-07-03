@@ -5,8 +5,8 @@ import { RootState } from "../../stores/store";
 import useAppAuth from "../../hooks/useAppAuth";
 
 function AppHeader() {
-	useAppAuth();
-	const { loginWithRedirect, logout, isLoading } = useAuth0();
+	const { isLoading } = useAppAuth();
+	const { loginWithRedirect, logout } = useAuth0();
 	const logoutWithRedirect = () =>
 		logout({
 			logoutParams: {
@@ -63,7 +63,7 @@ function AppHeader() {
 						</button>
 					)
 				) : (
-					<div className="name-spin"></div>
+					<div>Loading...</div>
 				)}
 			</div>
 		</header>
